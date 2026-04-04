@@ -19,3 +19,7 @@ node scripts/validate-manifests.mjs
 ```
 
 Replace placeholder names, colours, and copy in manifests and SVG wordmarks to match your real entities.
+
+## Status
+
+Progress log and open recommendations: [`design-system/STATUS.md`](design-system/STATUS.md).
