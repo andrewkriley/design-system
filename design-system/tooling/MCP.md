@@ -21,7 +21,7 @@ When prompting an agent with Figma MCP enabled:
 
 1. Pass **`profileId`** and paths from [`CONSUME.md`](CONSUME.md) (`manifests/`, `tokens/`).
 2. Prefer Figma **Variables** that mirror `design-system/figma/*.json` or native variables derived from `design-system/tokens/`.
-3. Paste **frame or layer links** so the server can resolve `node-id` (see Figma docs: *Get design context*).
+3. Paste **frame or layer links** so the server can resolve `node-id` (see Figma docs: _Get design context_).
 
 Optional: record canonical file URLs in `design-system/tooling/integrations.json` (create from `integrations.example.json`).
 
@@ -42,10 +42,10 @@ Because package names and env vars differ by implementation, this repo does **no
 
 ## Project configuration
 
-| Artifact | Purpose |
-|----------|---------|
+| Artifact                                                     | Purpose                                                                                                          |
+| ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
 | [`.cursor/mcp.json.example`](../../.cursor/mcp.json.example) | Copy to `.cursor/mcp.json`. Includes Figma’s official HTTP endpoint; add Stitch after you pick a server package. |
-| [`integrations.example.json`](integrations.example.json) | Copy to `integrations.json` for non-secret pointers (Figma file URLs, Stitch project ids). |
+| [`integrations.example.json`](integrations.example.json)     | Copy to `integrations.json` for non-secret pointers (Figma file URLs, Stitch project ids).                       |
 
 If Cursor rejects `"type": "http"`, try `"type": "streamableHttp"` for URL-based servers (see current Cursor MCP docs).
 

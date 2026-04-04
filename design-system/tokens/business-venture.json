@@ -1,9 +1,17 @@
 {
   "color": {
     "brand": {
-      "primary": { "value": "#312e81", "type": "color", "description": "Indigo — distinct but adjacent to family blues" },
+      "primary": {
+        "value": "#312e81",
+        "type": "color",
+        "description": "Indigo — distinct but adjacent to family blues"
+      },
       "primaryMuted": { "value": "#4338ca", "type": "color" },
-      "accent": { "value": "#ea580c", "type": "color", "description": "Amber-orange — product energy" },
+      "accent": {
+        "value": "#ea580c",
+        "type": "color",
+        "description": "Amber-orange — product energy"
+      },
       "accentSoft": { "value": "#fdba74", "type": "color" },
       "surface": { "value": "#fafafa", "type": "color" },
       "surfaceAlt": { "value": "#eef2ff", "type": "color" }

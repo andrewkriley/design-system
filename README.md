@@ -18,6 +18,19 @@ Central **brand profiles**, **design tokens**, **logos**, **templates**, and **t
 node scripts/validate-manifests.mjs
 ```
 
+## Local checks (lint + format + manifests)
+
+```bash
+npm ci
+npm run ci
+```
+
+`npm run format` applies Prettier. ESLint targets `scripts/**/*.mjs`.
+
+## CI
+
+On push and pull requests to `main`, GitHub Actions runs **Gitleaks** and **npm run ci**. See [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
+
 Replace placeholder names, colours, and copy in manifests and SVG wordmarks to match your real entities.
 
 ## Status

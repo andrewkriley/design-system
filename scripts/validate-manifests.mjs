@@ -8,15 +8,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = join(__dirname, "..");
-const required = [
-  "id",
-  "type",
-  "name",
-  "purpose",
-  "values",
-  "tone",
-  "voice",
-];
+const required = ["id", "type", "name", "purpose", "values", "tone", "voice"];
 
 function loadJson(path) {
   return JSON.parse(readFileSync(path, "utf8"));

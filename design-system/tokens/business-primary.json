@@ -1,7 +1,11 @@
 {
   "color": {
     "brand": {
-      "primary": { "value": "#0f2744", "type": "color", "description": "Navy — institutional trust" },
+      "primary": {
+        "value": "#0f2744",
+        "type": "color",
+        "description": "Navy — institutional trust"
+      },
       "primaryMuted": { "value": "#1a4070", "type": "color" },
       "accent": { "value": "#0d9488", "type": "color", "description": "Teal — progress, clarity" },
       "accentSoft": { "value": "#5eead4", "type": "color" },

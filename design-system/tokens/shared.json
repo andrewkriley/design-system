@@ -16,7 +16,10 @@
   },
   "font": {
     "family": {
-      "sans": { "value": "'Source Sans 3', 'Segoe UI', system-ui, sans-serif", "type": "fontFamily" },
+      "sans": {
+        "value": "'Source Sans 3', 'Segoe UI', system-ui, sans-serif",
+        "type": "fontFamily"
+      },
       "serif": { "value": "'Source Serif 4', 'Georgia', serif", "type": "fontFamily" },
       "mono": { "value": "'JetBrains Mono', 'Consolas', monospace", "type": "fontFamily" }
     },

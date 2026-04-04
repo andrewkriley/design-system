@@ -12,7 +12,10 @@
   "tone": {
     "primary": "Energetic within brand guardrails",
     "secondary": ["Product-forward where useful", "Still human in support and content"],
-    "avoid": ["Voice that contradicts the family ‘they all sound like’ line", "Cheap attention tricks"]
+    "avoid": [
+      "Voice that contradicts the family ‘they all sound like’ line",
+      "Cheap attention tricks"
+    ]
   },
   "voice": {
     "summary": "This profile may be slightly bolder or more niche in vocabulary, but sentence rhythm, honesty, and respect for the reader should match the personal and primary business manifests.",
@@ -21,10 +24,7 @@
       "Name the venture’s specific promise in one sentence",
       "Cross-link or acknowledge sibling brands when relevant"
     ],
-    "dont": [
-      "Invent a totally different personality",
-      "Undermine trust built under other profiles"
-    ]
+    "dont": ["Invent a totally different personality", "Undermine trust built under other profiles"]
   },
   "audiences": [
     {

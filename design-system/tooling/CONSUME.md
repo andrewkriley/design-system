@@ -32,6 +32,8 @@ node scripts/validate-manifests.mjs
 
 Exit code `0` means all manifests parse and required keys exist.
 
+In CI (GitHub Actions on `main`), the same check runs with ESLint, Prettier, and Gitleaks — see `.github/workflows/ci.yml`.
+
 ## Prompt injection (LLMs)
 
 Prepend or system-inject a short instruction:

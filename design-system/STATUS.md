@@ -52,7 +52,7 @@ This document records what the repository already delivers and what remains to m
 
 ### Tooling and automation
 
-9. **CI** — Run `node scripts/validate-manifests.mjs` in CI; optionally validate manifests against `manifest.schema.json` with a schema validator (e.g. AJV).
+9. **CI** — Delivered: GitHub Actions runs Gitleaks, ESLint, Prettier `--check`, and `validate-manifests` on pushes and PRs to `main` (see `.github/workflows/ci.yml`). Optional next step: validate manifests against `manifest.schema.json` with AJV or similar.
 10. **Token pipeline** — Add Style Dictionary (or similar) to emit CSS variables, iOS/Android, or Tailwind from `design-system/tokens/` so apps do not drift from Figma.
 11. **Schema validation** — Extend `validate-manifests.mjs` or add a second script to assert JSON Schema compliance, not only required keys.
 12. **MCP** — Copy `.cursor/mcp.json.example` to `.cursor/mcp.json`, complete Figma OAuth in Cursor, and add a **specific Google Stitch MCP package** plus GCP credentials per your org’s choice (`design-system/tooling/MCP.md`).
@@ -66,9 +66,9 @@ This document records what the repository already delivers and what remains to m
 
 ## Suggested order of work
 
-1. Replace names, colours, logos, and voice text (items 1–4).  
-2. Lock Figma Variables to repo tokens and record file URLs (items 6–7).  
-3. Add CI and optional token build (items 9–11).  
+1. Replace names, colours, logos, and voice text (items 1–4).
+2. Lock Figma Variables to repo tokens and record file URLs (items 6–7).
+3. Add CI and optional token build (items 9–11).
 4. Enable MCP in your IDE and Stitch when a server package is approved (item 12).
 
 Update this file when major milestones complete so the repo stays an accurate snapshot of status.

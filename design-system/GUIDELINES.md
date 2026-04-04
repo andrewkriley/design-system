@@ -4,11 +4,11 @@ This repository holds **profiles**, **design tokens**, **logo assets**, and **te
 
 ## Profiles
 
-| Profile ID           | Use when |
-|----------------------|----------|
-| `personal`           | You are the sender: byline, newsletter, LinkedIn as Andrew Riley, speaking intro. |
-| `business-primary`   | Flagship company: proposals, contracts, invoices, corporate site, hiring. |
-| `business-venture`   | Named product, subsidiary, or vertical with its own offer and palette. |
+| Profile ID         | Use when                                                                          |
+| ------------------ | --------------------------------------------------------------------------------- |
+| `personal`         | You are the sender: byline, newsletter, LinkedIn as Andrew Riley, speaking intro. |
+| `business-primary` | Flagship company: proposals, contracts, invoices, corporate site, hiring.         |
+| `business-venture` | Named product, subsidiary, or vertical with its own offer and palette.            |
 
 Add a new business by copying `business-venture.json`, assigning a new `id` and `tokenSetId`, adding a token file and logos, and registering paths in `manifests/index.json`.
 
