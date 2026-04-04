@@ -1,0 +1,10 @@
+{
+  "$comment": "Entry point for tools: list of profile manifests and schema location.",
+  "schema": "design-system/manifest.schema.json",
+  "defaultProfileId": "personal",
+  "profiles": [
+    "design-system/manifests/personal.json",
+    "design-system/manifests/business-primary.json",
+    "design-system/manifests/business-venture.json"
+  ]
+}

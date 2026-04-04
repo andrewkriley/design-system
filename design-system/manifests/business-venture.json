@@ -1,0 +1,41 @@
+{
+  "id": "business-venture",
+  "type": "business",
+  "name": "Secondary venture or product line",
+  "tagline": "Replace with venture-specific positioning.",
+  "purpose": "A distinct offer, product, or subsidiary that needs its own name and palette while staying genetically related to the personal and primary business brands. Use for experiments, verticals, or spin-outs.",
+  "values": [
+    "Focused value proposition",
+    "Distinct market fit without brand schizophrenia",
+    "Shared ethical baseline with sibling profiles"
+  ],
+  "tone": {
+    "primary": "Energetic within brand guardrails",
+    "secondary": ["Product-forward where useful", "Still human in support and content"],
+    "avoid": ["Voice that contradicts the family ‘they all sound like’ line", "Cheap attention tricks"]
+  },
+  "voice": {
+    "summary": "This profile may be slightly bolder or more niche in vocabulary, but sentence rhythm, honesty, and respect for the reader should match the personal and primary business manifests.",
+    "theyAllSoundLike": "If you covered the logo, the writing should still feel like it could only come from this ecosystem—not a generic startup or a detached agency.",
+    "do": [
+      "Name the venture’s specific promise in one sentence",
+      "Cross-link or acknowledge sibling brands when relevant"
+    ],
+    "dont": [
+      "Invent a totally different personality",
+      "Undermine trust built under other profiles"
+    ]
+  },
+  "audiences": [
+    {
+      "label": "Venture-specific customers",
+      "needs": "Clear product story and support tone that matches expectations set elsewhere."
+    }
+  ],
+  "relatedProfileIds": ["personal", "business-primary"],
+  "assetPaths": {
+    "logomark": "design-system/assets/logos/business-venture/logomark.svg",
+    "wordmark": "design-system/assets/logos/business-venture/wordmark.svg"
+  },
+  "tokenSetId": "business-venture"
+}

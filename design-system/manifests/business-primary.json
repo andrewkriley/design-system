@@ -1,0 +1,46 @@
+{
+  "id": "business-primary",
+  "type": "business",
+  "name": "Primary operating entity",
+  "tagline": "Replace with the registered business name and positioning line.",
+  "purpose": "The flagship business through which most client-facing work is delivered. Visual and verbal identity should feel slightly more formal than the personal brand while remaining recognisably part of the same family.",
+  "values": [
+    "Reliable delivery",
+    "Transparent scope and pricing posture",
+    "Long-term relationships over quick wins"
+  ],
+  "tone": {
+    "primary": "Professional, steady, evidence-led",
+    "secondary": ["Supportive of client decisions", "Decisive on recommendations"],
+    "avoid": ["Aggressive urgency tactics", "Over-promising", "Anonymous corporate voice"]
+  },
+  "voice": {
+    "summary": "Write as the organisation: clear mandates, documented reasoning, and language a busy executive can scan. The personal brand’s plainspoken honesty remains; add structure suitable for proposals, SOWs, and official comms.",
+    "theyAllSoundLike": "Readers should sense the same judgment and values as Andrew Riley’s personal voice, with organisation-appropriate formality and third-person or “we” as the default.",
+    "do": [
+      "Define terms once, use them consistently",
+      "Separate opinion from fact",
+      "Sign communications with a named human when it helps trust"
+    ],
+    "dont": [
+      "Use stock phrases that could apply to any firm",
+      "Obscure accountability"
+    ]
+  },
+  "audiences": [
+    {
+      "label": "Clients and buyers",
+      "needs": "Confidence that outcomes and process are understood."
+    },
+    {
+      "label": "Partners",
+      "needs": "Aligned expectations and crisp handoffs."
+    }
+  ],
+  "relatedProfileIds": ["personal", "business-venture"],
+  "assetPaths": {
+    "logomark": "design-system/assets/logos/business-primary/logomark.svg",
+    "wordmark": "design-system/assets/logos/business-primary/wordmark.svg"
+  },
+  "tokenSetId": "business-primary"
+}

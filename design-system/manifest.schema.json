@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://andrewriley.design-system/manifest.schema.json",
+  "title": "Andrew Riley design system profile manifest",
+  "description": "Machine-readable brand profile for tooling, prompts, and CI checks.",
+  "type": "object",
+  "required": ["id", "type", "name", "purpose", "values", "tone", "voice"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z0-9-]+$",
+      "description": "Stable slug, e.g. personal, business-consulting"
+    },
+    "type": {
+      "type": "string",
+      "enum": ["personal", "business"]
+    },
+    "name": { "type": "string" },
+    "tagline": { "type": "string" },
+    "purpose": {
+      "type": "string",
+      "description": "Why this profile exists; north star for decisions."
+    },
+    "values": {
+      "type": "array",
+      "items": { "type": "string" },
+      "minItems": 1
+    },
+    "tone": {
+      "type": "object",
+      "required": ["primary", "secondary"],
+      "properties": {
+        "primary": {
+          "type": "string",
+          "description": "Default emotional register (e.g. warm expert)."
+        },
+        "secondary": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "avoid": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "voice": {
+      "type": "object",
+      "required": ["summary", "theyAllSoundLike"],
+      "properties": {
+        "summary": {
+          "type": "string",
+          "description": "One paragraph voice description."
+        },
+        "theyAllSoundLike": {
+          "type": "string",
+          "description": "Shared fingerprint: how related profiles should feel as a family."
+        },
+        "do": { "type": "array", "items": { "type": "string" } },
+        "dont": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "audiences": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["label"],
+        "properties": {
+          "label": { "type": "string" },
+          "needs": { "type": "string" }
+        }
+      }
+    },
+    "relatedProfileIds": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Other manifest ids that should stay visually and tonally coherent."
+    },
+    "assetPaths": {
+      "type": "object",
+      "additionalProperties": { "type": "string" },
+      "description": "Repo-relative paths to logos, templates, etc."
+    },
+    "tokenSetId": {
+      "type": "string",
+      "description": "Key in tokens/index.json for colours, type, motion."
+    }
+  },
+  "additionalProperties": false
+}
