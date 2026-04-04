@@ -1,0 +1,49 @@
+{
+  "$comment": "Neutral scale and shared type — use as Default/Global set in Tokens Studio.",
+  "Shared": {
+    "color": {
+      "neutral": {
+        "0": { "value": "#0c0d0f", "type": "color" },
+        "50": { "value": "#181a1f", "type": "color" },
+        "100": { "value": "#2a2d35", "type": "color" },
+        "200": { "value": "#3d424d", "type": "color" },
+        "300": { "value": "#5c6370", "type": "color" },
+        "400": { "value": "#8b929e", "type": "color" },
+        "500": { "value": "#b4bac5", "type": "color" },
+        "600": { "value": "#d6dae2", "type": "color" },
+        "700": { "value": "#e8ebf0", "type": "color" },
+        "800": { "value": "#f3f5f8", "type": "color" },
+        "900": { "value": "#fafbfc", "type": "color" }
+      }
+    },
+    "font": {
+      "family": {
+        "sans": { "value": "Source Sans 3", "type": "fontFamilies" },
+        "serif": { "value": "Source Serif 4", "type": "fontFamilies" },
+        "mono": { "value": "JetBrains Mono", "type": "fontFamilies" }
+      },
+      "size": {
+        "xs": { "value": "12", "type": "fontSizes" },
+        "sm": { "value": "14", "type": "fontSizes" },
+        "md": { "value": "16", "type": "fontSizes" },
+        "lg": { "value": "18", "type": "fontSizes" },
+        "xl": { "value": "24", "type": "fontSizes" },
+        "2xl": { "value": "32", "type": "fontSizes" },
+        "3xl": { "value": "44", "type": "fontSizes" }
+      }
+    },
+    "radius": {
+      "sm": { "value": "4", "type": "borderRadius" },
+      "md": { "value": "8", "type": "borderRadius" },
+      "lg": { "value": "12", "type": "borderRadius" }
+    },
+    "space": {
+      "xs": { "value": "4", "type": "spacing" },
+      "sm": { "value": "8", "type": "spacing" },
+      "md": { "value": "16", "type": "spacing" },
+      "lg": { "value": "24", "type": "spacing" },
+      "xl": { "value": "32", "type": "spacing" },
+      "2xl": { "value": "48", "type": "spacing" }
+    }
+  }
+}

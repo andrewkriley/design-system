@@ -38,6 +38,10 @@ Personal brand leans **serif for headings**; primary business uses **sans throug
 - Maintain clear space equal to at least half the height of the logomark around lockups.
 - Do not stretch, rotate, or change hue outside the defined tokens; for monochrome prints, use neutral-0 on light paper or neutral-900 on dark.
 
+## Visual mockups
+
+Open `design-system/mockups/index.html` in a browser (double-click or serve the repo) to see a simple card layout per profile using current tokens and logos.
+
 ## Templates
 
 Start from `design-system/templates/` for email signatures, bios, articles, and decks. Each file notes which profile it suits.

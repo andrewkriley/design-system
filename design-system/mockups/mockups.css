@@ -1,0 +1,202 @@
+/* Colours mirror design-system/tokens/*.json (resolved, no build step). */
+
+:root {
+  --neutral-0: #0c0d0f;
+  --neutral-300: #5c6370;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --font-sans: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+  --font-serif: "Source Serif 4", Georgia, serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--neutral-0);
+  background: #e8ebf0;
+}
+
+.page-header {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 1rem;
+}
+
+.page-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 1.75rem;
+  font-weight: 700;
+}
+
+.lede {
+  margin: 0;
+  max-width: 42rem;
+  color: var(--neutral-300);
+}
+
+.lede code {
+  font-size: 0.9em;
+}
+
+.gallery {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.brand-frame {
+  --brand-primary: #1e3a5f;
+  --brand-primary-muted: #2d5a87;
+  --brand-accent: #c45c26;
+  --brand-surface: #faf8f5;
+  --brand-surface-alt: #f0ebe4;
+  --heading-font: var(--font-serif);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(12, 13, 15, 0.08);
+}
+
+.brand-business-primary {
+  --brand-primary: #0f2744;
+  --brand-primary-muted: #1a4070;
+  --brand-accent: #0d9488;
+  --brand-surface: #ffffff;
+  --brand-surface-alt: #f1f5f9;
+  --heading-font: var(--font-sans);
+}
+
+.brand-business-venture {
+  --brand-primary: #312e81;
+  --brand-primary-muted: #4338ca;
+  --brand-accent: #ea580c;
+  --brand-surface: #fafafa;
+  --brand-surface-alt: #eef2ff;
+  --heading-font: var(--font-sans);
+}
+
+.brand-inner {
+  background: var(--brand-surface);
+  border: 1px solid rgba(12, 13, 15, 0.06);
+}
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.5rem;
+  background: var(--brand-surface-alt);
+  border-bottom: 1px solid rgba(12, 13, 15, 0.06);
+}
+
+.logo-mark {
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+}
+
+.brand-name {
+  margin: 0;
+  font-family: var(--heading-font);
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: var(--brand-primary);
+  line-height: 1.2;
+}
+
+.brand-tagline {
+  margin: 0.2rem 0 0;
+  font-size: 0.875rem;
+  color: var(--neutral-300);
+}
+
+.hero {
+  padding: 1.75rem 1.5rem 1.5rem;
+}
+
+.hero-title {
+  margin: 0 0 0.75rem;
+  font-family: var(--heading-font);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--neutral-0);
+  line-height: 1.25;
+}
+
+.hero-body {
+  margin: 0 0 1.25rem;
+  max-width: 36rem;
+  color: var(--neutral-300);
+  font-size: 1rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-sans);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius-md);
+  border: 2px solid transparent;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.btn-primary {
+  background: var(--brand-primary);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: var(--brand-primary-muted);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--brand-primary-muted);
+  border-color: rgba(12, 13, 15, 0.12);
+}
+
+.btn-ghost:hover {
+  border-color: var(--brand-accent);
+  color: var(--brand-primary);
+}
+
+.swatches {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0 1.5rem 1.25rem;
+}
+
+.swatch {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 6px;
+  background: var(--swatch);
+  border: 1px solid rgba(12, 13, 15, 0.08);
+}
+
+@media (min-width: 960px) {
+  .gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

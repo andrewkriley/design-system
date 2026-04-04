@@ -39,3 +39,7 @@ Prepend or system-inject a short instruction:
 > Follow the brand profile in `design-system/manifests/<profileId>.json`. Honour `purpose`, `values`, `tone`, and `voice` including `theyAllSoundLike`. Prefer vocabulary and cadence consistent with related profiles in `relatedProfileIds`.
 
 Optional: load the matching token JSON and state hex codes for any visual output.
+
+## Figma
+
+See [`FIGMA.md`](FIGMA.md) for Tokens Studio import paths, Variables, and placing SVG logos from `design-system/assets/logos/`.
