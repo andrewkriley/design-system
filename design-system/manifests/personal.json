@@ -1,0 +1,49 @@
+{
+  "id": "personal",
+  "type": "personal",
+  "name": "Andrew Riley",
+  "tagline": "Replace with your public-facing one-liner.",
+  "purpose": "Represent Andrew Riley as an individual: credibility, character, and the through-line that connects every business entity. This profile is for speaking, writing, and media where the person—not a company—is the primary brand.",
+  "values": [
+    "Clarity over cleverness",
+    "Earned trust through consistency",
+    "Respect for the reader’s time",
+    "Curiosity and intellectual honesty"
+  ],
+  "tone": {
+    "primary": "Assured, approachable, precise",
+    "secondary": ["Conversational without being casual", "Optimistic but grounded"],
+    "avoid": ["Hype without substance", "Corporate filler", "Talking down to the audience"]
+  },
+  "voice": {
+    "summary": "Sound like someone who has done the work and can explain it plainly. Prefer concrete examples, short sentences, and a calm confidence. Let expertise show through structure and accuracy, not jargon.",
+    "theyAllSoundLike": "Every Andrew Riley touchpoint—personal or business—should feel like the same person showed up: clear, fair-minded, and allergic to empty marketing noise. Business entities may dial formality or playfulness up or down, but never swap integrity of voice.",
+    "do": [
+      "Lead with the point, then support it",
+      "Use “we” for shared work, “I” for personal point of view",
+      "Name trade-offs when they matter"
+    ],
+    "dont": [
+      "Stack superlatives",
+      "Hide uncertainty behind buzzwords",
+      "Mimic trends that clash with stated values"
+    ]
+  },
+  "audiences": [
+    {
+      "label": "Peers and collaborators",
+      "needs": "Technical or strategic depth without posturing."
+    },
+    {
+      "label": "Broader public",
+      "needs": "Accessible language and a human reason to care."
+    }
+  ],
+  "relatedProfileIds": ["business-primary", "business-venture"],
+  "assetPaths": {
+    "logomark": "design-system/assets/logos/personal/logomark.svg",
+    "wordmark": "design-system/assets/logos/personal/wordmark.svg",
+    "avatar": "design-system/assets/reference/personal/avatar-placeholder.txt"
+  },
+  "tokenSetId": "personal"
+}

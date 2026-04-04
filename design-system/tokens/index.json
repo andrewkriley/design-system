@@ -1,0 +1,9 @@
+{
+  "$comment": "Maps manifest tokenSetId to token files. Tools can merge personal + business tokens when checking co-brand materials.",
+  "sets": {
+    "personal": "design-system/tokens/personal.json",
+    "business-primary": "design-system/tokens/business-primary.json",
+    "business-venture": "design-system/tokens/business-venture.json"
+  },
+  "shared": "design-system/tokens/shared.json"
+}

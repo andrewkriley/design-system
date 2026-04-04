@@ -1,0 +1,19 @@
+{
+  "$comment": "Primary business entity — import via Tokens Studio for Figma.",
+  "Business primary": {
+    "color": {
+      "brand": {
+        "primary": { "value": "#0f2744", "type": "color" },
+        "primaryMuted": { "value": "#1a4070", "type": "color" },
+        "accent": { "value": "#0d9488", "type": "color" },
+        "accentSoft": { "value": "#5eead4", "type": "color" },
+        "surface": { "value": "#ffffff", "type": "color" },
+        "surfaceAlt": { "value": "#f1f5f9", "type": "color" }
+      }
+    },
+    "font": {
+      "heading": { "value": "Source Sans 3", "type": "fontFamilies" },
+      "body": { "value": "Source Sans 3", "type": "fontFamilies" }
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "color": {
+    "brand": {
+      "primary": {
+        "value": "#0f2744",
+        "type": "color",
+        "description": "Navy — institutional trust"
+      },
+      "primaryMuted": { "value": "#1a4070", "type": "color" },
+      "accent": { "value": "#0d9488", "type": "color", "description": "Teal — progress, clarity" },
+      "accentSoft": { "value": "#5eead4", "type": "color" },
+      "surface": { "value": "#ffffff", "type": "color" },
+      "surfaceAlt": { "value": "#f1f5f9", "type": "color" }
+    },
+    "semantic": {
+      "text": { "value": "{color.neutral.0}", "type": "color" },
+      "textMuted": { "value": "{color.neutral.300}", "type": "color" },
+      "link": { "value": "{color.brand.primaryMuted}", "type": "color" },
+      "linkHover": { "value": "{color.brand.accent}", "type": "color" }
+    }
+  },
+  "font": {
+    "heading": { "value": "{font.family.sans}", "type": "fontFamily" },
+    "body": { "value": "{font.family.sans}", "type": "fontFamily" }
+  }
+}

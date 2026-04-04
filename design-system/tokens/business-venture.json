@@ -1,0 +1,30 @@
+{
+  "color": {
+    "brand": {
+      "primary": {
+        "value": "#312e81",
+        "type": "color",
+        "description": "Indigo — distinct but adjacent to family blues"
+      },
+      "primaryMuted": { "value": "#4338ca", "type": "color" },
+      "accent": {
+        "value": "#ea580c",
+        "type": "color",
+        "description": "Amber-orange — product energy"
+      },
+      "accentSoft": { "value": "#fdba74", "type": "color" },
+      "surface": { "value": "#fafafa", "type": "color" },
+      "surfaceAlt": { "value": "#eef2ff", "type": "color" }
+    },
+    "semantic": {
+      "text": { "value": "{color.neutral.0}", "type": "color" },
+      "textMuted": { "value": "{color.neutral.300}", "type": "color" },
+      "link": { "value": "{color.brand.primaryMuted}", "type": "color" },
+      "linkHover": { "value": "{color.brand.accent}", "type": "color" }
+    }
+  },
+  "font": {
+    "heading": { "value": "{font.family.sans}", "type": "fontFamily" },
+    "body": { "value": "{font.family.sans}", "type": "fontFamily" }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$comment": "Venture / subsidiary — import via Tokens Studio for Figma.",
+  "Business venture": {
+    "color": {
+      "brand": {
+        "primary": { "value": "#312e81", "type": "color" },
+        "primaryMuted": { "value": "#4338ca", "type": "color" },
+        "accent": { "value": "#ea580c", "type": "color" },
+        "accentSoft": { "value": "#fdba74", "type": "color" },
+        "surface": { "value": "#fafafa", "type": "color" },
+        "surfaceAlt": { "value": "#eef2ff", "type": "color" }
+      }
+    },
+    "font": {
+      "heading": { "value": "Source Sans 3", "type": "fontFamilies" },
+      "body": { "value": "Source Sans 3", "type": "fontFamilies" }
+    }
+  }
+}
