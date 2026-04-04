@@ -43,3 +43,7 @@ Optional: load the matching token JSON and state hex codes for any visual output
 ## Figma
 
 See [`FIGMA.md`](FIGMA.md) for Tokens Studio import paths, Variables, and placing SVG logos from `design-system/assets/logos/`.
+
+## MCP (Figma & Google Stitch)
+
+See [`MCP.md`](MCP.md) for enabling **Model Context Protocol** clients to combine this repo with Figma’s remote MCP server and optional Stitch MCP servers.

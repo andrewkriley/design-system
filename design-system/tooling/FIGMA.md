@@ -37,6 +37,10 @@ Good when you want zero plugin dependency; you maintain parity by hand when toke
 
 If Tokens Studio is connected to the same Git branch as this repo, designers and developers share one token definition. For stricter pipelines, add a small script later that emits Figma-compatible JSON from `design-system/tokens/` so you never duplicate hex values by hand.
 
+## MCP (agents and IDEs)
+
+For **Figma’s official MCP server** (OAuth, design context, code from frames), see [`MCP.md`](MCP.md) and `.cursor/mcp.json.example`.
+
 ## Limits
 
 - Figma’s REST API does not replace Variables for day-to-day token editing; plugins or manual variable setup remain the norm.

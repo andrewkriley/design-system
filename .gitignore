@@ -1,0 +1,3 @@
+# Local MCP and integration overrides (examples stay committed)
+.cursor/mcp.json
+design-system/tooling/integrations.json

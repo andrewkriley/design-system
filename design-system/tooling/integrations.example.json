@@ -1,0 +1,11 @@
+{
+  "$comment": "Copy to integrations.json in this folder. File is gitignored for local URLs and ids.",
+  "figma": {
+    "designSystemFileUrl": "",
+    "componentLibraryFileUrl": ""
+  },
+  "googleStitch": {
+    "projectId": "",
+    "defaultScreenId": ""
+  }
+}

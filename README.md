@@ -10,6 +10,7 @@ Central **brand profiles**, **design tokens**, **logos**, **templates**, and **t
 - Tool integration: [`design-system/tooling/CONSUME.md`](design-system/tooling/CONSUME.md)
 - Visual mockups (browser): open [`design-system/mockups/index.html`](design-system/mockups/index.html)
 - Figma: token JSON in [`design-system/figma/`](design-system/figma/) and [`design-system/tooling/FIGMA.md`](design-system/tooling/FIGMA.md)
+- MCP (Figma + Stitch readiness): [`design-system/tooling/MCP.md`](design-system/tooling/MCP.md), template [`.cursor/mcp.json.example`](.cursor/mcp.json.example)
 
 ## Validate manifests
 
