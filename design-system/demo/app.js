@@ -29,13 +29,24 @@ function flattenTokens(tree, prefix, out) {
     if (key.startsWith("$")) continue;
     const node = tree[key];
     const path = prefix ? `${prefix}.${key}` : key;
-    if (node && typeof node === "object" && "value" in node) {
+    if (node && typeof node === "object" && !Array.isArray(node) && "value" in node) {
+      // This repo's own token files: a leaf is an object with an explicit `value`.
       out[path] = { ...node, path };
-    } else if (node && typeof node === "object") {
+    } else if (node && typeof node === "object" && !Array.isArray(node)) {
       flattenTokens(node, path, out);
+    } else if (typeof node === "string" || typeof node === "number" || typeof node === "boolean") {
+      // Some external token sets (e.g. glam-cp) use bare literals as leaves instead.
+      out[path] = { value: node, path };
     }
   }
   return out;
+}
+
+// Numeric leaves (e.g. glam-cp's raw px numbers) need a unit when used as a
+// CSS value or shown as text; string leaves (e.g. this repo's own "1rem")
+// already carry their own unit and pass through unchanged.
+function tokenText(node) {
+  return typeof node.resolvedValue === "number" ? `${node.resolvedValue}px` : node.resolvedValue;
 }
 
 function resolveOne(flat, path, seen) {
@@ -104,6 +115,23 @@ async function loadDesignSystem() {
   return { defaultProfileId: manifestIndex.defaultProfileId, profiles };
 }
 
+async function loadPatterns() {
+  let index;
+  try {
+    index = await fetchJson("design-system/patterns/index.json");
+  } catch {
+    return []; // patterns/ is optional — profiles work fine without it
+  }
+  const patterns = [];
+  for (const entry of index.patterns) {
+    const raw = await fetchJson(entry.tokensPath);
+    const { meta, $description, ...tokenTree } = raw;
+    const tokens = withPatternColorAliases(resolveAllTokens(flattenTokens(tokenTree, "", {})));
+    patterns.push({ ...entry, meta, description: $description, tokens });
+  }
+  return patterns;
+}
+
 // ---- Rendering --------------------------------------------------------------
 
 function hasDarkTokens(tokens) {
@@ -127,9 +155,35 @@ function applyTheme(tokens, mode) {
   }
   for (const path of Object.keys(tokens)) {
     if (path.startsWith("dark.")) continue;
-    root.style.setProperty(cssVarName(path), effectiveNode(tokens, path, mode).resolvedValue);
+    root.style.setProperty(cssVarName(path), tokenText(effectiveNode(tokens, path, mode)));
   }
   document.body.classList.toggle("demo-dark", mode === "dark" && hasDarkTokens(tokens));
+}
+
+// Lets a token-only pattern (no color.brand.*/color.semantic.* of its own)
+// reuse the existing brand-header/.panel/.btn/.badge CSS, which is written
+// against those var names. Purely a rendering-layer convenience — doesn't
+// touch the underlying token file, and the pattern's own color section still
+// reads its native names directly.
+function withPatternColorAliases(tokens) {
+  const alias = (aliasPath, sourcePath) => {
+    if (tokens[sourcePath]) tokens[aliasPath] = { ...tokens[sourcePath], path: aliasPath };
+  };
+  alias("color.brand.primary", "color.accent.default");
+  alias("color.brand.primaryMuted", "color.accent.cyan");
+  alias("color.brand.accent", "color.accent.violet");
+  alias("color.brand.surface", "color.bg.panel");
+  alias("color.brand.surfaceAlt", "color.bg.canvas");
+  alias("color.semantic.text", "color.text.primary");
+  alias("color.semantic.textMuted", "color.text.muted");
+  alias("color.semantic.link", "color.accent.default");
+  alias("color.semantic.linkHover", "color.accent.cyan");
+  // accent.default is a mid-bright blue — white text on it fails contrast;
+  // the near-black canvas color reads far better, same "flip onX dark when
+  // the brand color is light" rule used for personal's dark mode.
+  alias("color.semantic.onPrimary", "color.bg.canvas");
+  alias("color.semantic.onAccent", "color.bg.canvas");
+  return tokens;
 }
 
 function assetSrc(repoRelativePath) {
@@ -252,7 +306,7 @@ function renderSpacing(tokens) {
         <div class="scale-row">
           <span class="scale-label">space.${short}</span>
           <span class="scale-bar" style="width: var(${cssVarName(k)})"></span>
-          <span class="scale-value">${esc(tokens[k].resolvedValue)}</span>
+          <span class="scale-value">${esc(tokenText(tokens[k]))}</span>
         </div>`;
     })
     .join("");
@@ -263,7 +317,7 @@ function renderSpacing(tokens) {
       return `
         <div class="radius-sample">
           <span class="radius-box" style="border-radius: var(${cssVarName(k)})"></span>
-          <span class="scale-label">radius.${short} — ${esc(tokens[k].resolvedValue)}</span>
+          <span class="scale-label">radius.${short} — ${esc(tokenText(tokens[k]))}</span>
         </div>`;
     })
     .join("");
@@ -348,6 +402,89 @@ function renderTemplates(manifest) {
     </section>`;
 }
 
+function renderPatternColors(tokens) {
+  const groups = [
+    { label: "Background", prefix: "color.bg." },
+    { label: "Text", prefix: "color.text." },
+    { label: "Border", prefix: "color.border." },
+    { label: "Accent", prefix: "color.accent." },
+  ];
+  const short = (k) => k.split(".").pop();
+  const rows = groups
+    .map((g) => {
+      const keys = Object.keys(tokens).filter((k) => k.startsWith(g.prefix));
+      if (!keys.length) return "";
+      return `<h3>${esc(g.label)}</h3><div class="swatch-row">${keys.map((k) => swatch(tokens, k, short(k))).join("")}</div>`;
+    })
+    .join("");
+  return `
+    <section class="panel" aria-labelledby="pattern-color-heading">
+      <h2 id="pattern-color-heading">Color</h2>
+      <p class="panel-lede">A single dark palette — this token set has no separate light variant.</p>
+      ${rows}
+    </section>`;
+}
+
+function renderPatternTypography(tokens) {
+  const roles = [
+    ...new Set(
+      Object.keys(tokens)
+        .filter((k) => k.startsWith("type."))
+        .map((k) => k.split(".")[1]),
+    ),
+  ];
+  const rows = roles
+    .map((role) => {
+      const size = tokens[`type.${role}.size`]?.resolvedValue;
+      const weight = tokens[`type.${role}.weight`]?.resolvedValue;
+      const lineHeight = tokens[`type.${role}.lineHeight`]?.resolvedValue;
+      return `
+        <div class="type-row">
+          <span class="type-token">type.${esc(role)} — ${size}px / ${weight} / ${lineHeight}px lh</span>
+          <span class="type-sample" style="grid-column: span 2; font-size:${size}px; font-weight:${weight}; line-height:${lineHeight}px">Sample Aa</span>
+        </div>`;
+    })
+    .join("");
+  return `
+    <section class="panel" aria-labelledby="pattern-type-heading">
+      <h2 id="pattern-type-heading">Typography</h2>
+      <p class="panel-lede">No font family is specified in this token set — samples use the system UI font.</p>
+      <div class="type-scale">${rows}</div>
+    </section>`;
+}
+
+function renderPattern(pattern) {
+  const { tokens } = pattern;
+  applyTheme(tokens, "light"); // patterns have no dark branch of their own — they simply are one fixed palette
+  // applyTheme only flips the outer chrome dark for a profile's own light->dark
+  // toggle. A pattern that's simply always dark (per its own meta.mode) needs
+  // the same chrome treatment, or its near-white text won't sit on a matching
+  // dark app-header background.
+  document.body.classList.toggle("demo-dark", pattern.meta?.mode === "Dark");
+
+  const main = document.getElementById("app-main");
+  main.innerHTML = `
+    <section class="brand-header">
+      <div class="brand-header-text">
+        <h2 class="brand-name">${esc(pattern.name)}</h2>
+        <p class="brand-tagline">${esc(pattern.tagline || pattern.description || "")}</p>
+        <p class="brand-meta">
+          Pattern <code>${esc(pattern.id)}</code>
+          ${pattern.meta?.mode ? ` · mode <code>${esc(pattern.meta.mode)}</code>` : ""}
+          ${pattern.meta?.source ? ` · source <code>${esc(pattern.meta.source)}</code>` : ""}
+          ${pattern.meta?.figmaFileUrl ? ` · <a class="link-sample" href="${esc(pattern.meta.figmaFileUrl)}" target="_blank" rel="noopener">Open in Figma</a>` : ""}
+        </p>
+      </div>
+    </section>
+    ${renderPatternColors(tokens)}
+    ${renderPatternTypography(tokens)}
+    ${renderSpacing(tokens)}
+    ${renderComponents()}
+  `;
+
+  wireTokenPopovers(tokens, "light");
+}
+
 function renderProfile(profile, mode, onToggleMode) {
   const { manifest, tokens } = profile;
   applyTheme(tokens, mode);
@@ -393,7 +530,7 @@ function wireTokenPopovers(tokens, mode) {
       const node = effectiveNode(tokens, path, mode);
       popover.innerHTML = `
         <p class="token-path">${esc(path)}${mode === "dark" && node !== tokens[path] ? " (dark)" : ""}</p>
-        <p class="token-value">${esc(node.resolvedValue)}</p>
+        <p class="token-value">${esc(tokenText(node))}</p>
         ${node.refPath ? `<p class="token-ref">resolved from <code>{${esc(node.refPath)}}</code></p>` : ""}
         ${node.description ? `<p class="token-desc">${esc(node.description)}</p>` : ""}
       `;
@@ -408,13 +545,13 @@ function wireTokenPopovers(tokens, mode) {
   });
 }
 
-function renderSwitcher(profiles, activeId, onSelect) {
+function renderSwitcher(entries, activeId, onSelect) {
   const nav = document.getElementById("profile-switcher");
-  nav.innerHTML = profiles
+  nav.innerHTML = entries
     .map(
-      ({ manifest }) => `
-      <button type="button" class="profile-tab${manifest.id === activeId ? " active" : ""}" data-id="${esc(manifest.id)}">
-        ${esc(manifest.name)}
+      (entry) => `
+      <button type="button" class="profile-tab${entry.id === activeId ? " active" : ""}" data-id="${esc(entry.id)}">
+        ${esc(entry.name)}
       </button>`,
     )
     .join("");
@@ -424,39 +561,54 @@ function renderSwitcher(profiles, activeId, onSelect) {
 }
 
 async function main() {
-  let data;
+  let data, patterns;
   try {
-    data = await loadDesignSystem();
+    [data, patterns] = await Promise.all([loadDesignSystem(), loadPatterns()]);
   } catch (err) {
     document.getElementById("app-main").innerHTML =
       `<p class="error">Could not load the design system: ${esc(err.message)}. Serve this app with <code>npm run demo</code> from the repo root (fetch of local JSON needs an http server, not file://).</p>`;
     return;
   }
 
+  const entries = [
+    ...data.profiles.map((p) => ({
+      kind: "profile",
+      id: p.manifest.id,
+      name: p.manifest.name,
+      data: p,
+    })),
+    ...patterns.map((p) => ({ kind: "pattern", id: p.id, name: p.name, data: p })),
+  ];
+
   const params = new URLSearchParams(location.search);
   const stored = localStorage.getItem("ds-demo-profile");
   const initialId =
     params.get("profile") ||
-    (data.profiles.some((p) => p.manifest.id === stored) ? stored : null) ||
+    (entries.some((e) => e.id === stored) ? stored : null) ||
     data.defaultProfileId ||
-    data.profiles[0].manifest.id;
+    entries[0].id;
 
   let mode = "light";
 
   function select(id) {
-    const profile = data.profiles.find((p) => p.manifest.id === id) || data.profiles[0];
-    mode = "light"; // reset on profile switch; each profile's own toggle governs its own mode
-    localStorage.setItem("ds-demo-profile", profile.manifest.id);
+    const entry = entries.find((e) => e.id === id) || entries[0];
+    mode = "light"; // reset on switch; each profile's own toggle governs its own mode
+    localStorage.setItem("ds-demo-profile", entry.id);
     const url = new URL(location.href);
-    url.searchParams.set("profile", profile.manifest.id);
+    url.searchParams.set("profile", entry.id);
     history.replaceState(null, "", url);
-    renderSwitcher(data.profiles, profile.manifest.id, select);
+    renderSwitcher(entries, entry.id, select);
+
+    if (entry.kind === "pattern") {
+      renderPattern(entry.data);
+      return;
+    }
 
     function toggleMode() {
       mode = mode === "dark" ? "light" : "dark";
-      renderProfile(profile, mode, toggleMode);
+      renderProfile(entry.data, mode, toggleMode);
     }
-    renderProfile(profile, mode, toggleMode);
+    renderProfile(entry.data, mode, toggleMode);
   }
 
   select(initialId);
