@@ -35,16 +35,16 @@ function flattenTokens(tree, prefix, out) {
     } else if (node && typeof node === "object" && !Array.isArray(node)) {
       flattenTokens(node, path, out);
     } else if (typeof node === "string" || typeof node === "number" || typeof node === "boolean") {
-      // Some external token sets (e.g. glam-cp) use bare literals as leaves instead.
+      // Some external token sets (e.g. therileys-team) use bare literals as leaves instead.
       out[path] = { value: node, path };
     }
   }
   return out;
 }
 
-// Numeric leaves (e.g. glam-cp's raw px numbers) need a unit when used as a
-// CSS value or shown as text; string leaves (e.g. this repo's own "1rem")
-// already carry their own unit and pass through unchanged.
+// Numeric leaves (e.g. therileys-team's raw px numbers) need a unit when used
+// as a CSS value or shown as text; string leaves (e.g. this repo's own
+// "1rem") already carry their own unit and pass through unchanged.
 function tokenText(node) {
   return typeof node.resolvedValue === "number" ? `${node.resolvedValue}px` : node.resolvedValue;
 }
@@ -570,7 +570,7 @@ async function main() {
     return;
   }
 
-  const entries = [
+  const unordered = [
     ...data.profiles.map((p) => ({
       kind: "profile",
       id: p.manifest.id,
@@ -580,13 +580,19 @@ async function main() {
     ...patterns.map((p) => ({ kind: "pattern", id: p.id, name: p.name, data: p })),
   ];
 
+  // A pattern's own `default: true` wins over manifests/index.json's
+  // defaultProfileId — lets the demo (and README's example prompt) lead with
+  // a token-only pattern like therileys-team when that's the primary one.
+  const defaultId = patterns.find((p) => p.default)?.id || data.defaultProfileId || unordered[0].id;
+  const entries = [
+    ...unordered.filter((e) => e.id === defaultId),
+    ...unordered.filter((e) => e.id !== defaultId),
+  ];
+
   const params = new URLSearchParams(location.search);
   const stored = localStorage.getItem("ds-demo-profile");
   const initialId =
-    params.get("profile") ||
-    (entries.some((e) => e.id === stored) ? stored : null) ||
-    data.defaultProfileId ||
-    entries[0].id;
+    params.get("profile") || (entries.some((e) => e.id === stored) ? stored : null) || defaultId;
 
   let mode = "light";
 

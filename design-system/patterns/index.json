@@ -1,11 +1,12 @@
 {
-  "$comment": "Token-only UI patterns — a project's own visual language with no brand-voice manifest, unlike design-system/manifests/ profiles. The demo renders each as an extra tab alongside the three brand profiles: colors, type, spacing, and a themed component gallery, but no voice/tone/logo/template sections since none of that data exists for these.",
+  "$comment": "Token-only UI patterns — a project's own visual language with no brand-voice manifest, unlike design-system/manifests/ profiles. The demo renders each as an extra tab alongside the three brand profiles: colors, type, spacing, and a themed component gallery, but no voice/tone/logo/template sections since none of that data exists for these. `default: true` makes an entry the demo's initial tab and the leading example in README's consumption prompt, overriding manifests/index.json's defaultProfileId.",
   "patterns": [
     {
-      "id": "glam-cp",
+      "id": "therileys-team",
       "name": "therileys-team",
-      "tagline": "A homelab/product UI token set — not a brand profile.",
-      "tokensPath": "design-system/tokens/glam-cp.json"
+      "tagline": "A homelab/product UI token set — not a brand-voice profile.",
+      "tokensPath": "design-system/tokens/therileys-team.json",
+      "default": true
     }
   ]
 }
