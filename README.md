@@ -1,56 +1,156 @@
 # Andrew Riley design system
 
-Central **brand profiles**, **design tokens**, **logos**, **templates**, and **tooling hooks** for Andrew Riley’s personal brand and related business entities.
+Central **brand profiles**, **design tokens**, **logos**, **templates**, and **tooling hooks** for
+Andrew Riley's personal brand, related business entities, and standalone product/tool UIs.
 
-## Quick start
+This README focuses on **how to use it**. For what's finished vs. still placeholder, see
+[`design-system/STATUS.md`](design-system/STATUS.md).
 
-- Human-readable rules: [`design-system/GUIDELINES.md`](design-system/GUIDELINES.md)
-- Machine-readable profiles: [`design-system/manifests/index.json`](design-system/manifests/index.json)
-- Tokens (colour, type, space): [`design-system/tokens/`](design-system/tokens/)
-- Tool integration: [`design-system/tooling/CONSUME.md`](design-system/tooling/CONSUME.md)
-- Static mockups (browser): open [`design-system/mockups/index.html`](design-system/mockups/index.html)
-- **Live demo (local web app):** `npm run demo` — fetches the real manifests/tokens at runtime, resolves `{token}` references, and lets you switch between all three profiles to see color, type, voice, and components change together. See [Demo](#demo) below.
-- Figma: token JSON in [`design-system/figma/`](design-system/figma/) and [`design-system/tooling/FIGMA.md`](design-system/tooling/FIGMA.md)
-- MCP (Figma + Stitch readiness): [`design-system/tooling/MCP.md`](design-system/tooling/MCP.md), template [`.cursor/mcp.json.example`](.cursor/mcp.json.example)
+## Using this from another application
 
-## Demo
+This repo is meant to be pointed at, not published as a package — anything that can fetch a public
+GitHub URL can consume it directly: `https://github.com/andrewkriley/design-system`.
+
+**From an AI coding agent (Claude Code, Cursor, etc.):** the fastest path for a one-off styling task
+is just giving it the repo link and a profile. For example:
+
+```
+Style this app using the Andrew Riley design system: https://github.com/andrewkriley/design-system
+
+- Brand profile: personal (design-system/manifests/personal.json)
+- Tokens: design-system/tokens/personal.json, merged with design-system/tokens/shared.json
+- Resolve any "{a.b.c}" values as references to another token's dot-path — see
+  design-system/tooling/CONSUME.md for the exact discovery/merge steps, or
+  design-system/demo/app.js's flattenTokens/resolveOne for a ~40-line reference implementation
+- Match voice too: apply purpose/values/tone/voice from the manifest to any copy you write
+- If design-system/tokens/personal.json has a top-level "dark" key, support light + dark mode
+```
+
+Swap `personal` for `business-primary`/`business-venture` for that voice instead, or drop the
+manifest/voice lines entirely and point at a **pattern** (e.g. `design-system/tokens/glam-cp.json`)
+when you just need a token set with no brand voice attached — see "Two kinds of entry" below.
+
+**From a build pipeline or app at runtime**, without an agent in the loop: fetch the specific JSON
+files you need (raw GitHub URLs, a shallow clone, or a git submodule all work — there's no build
+step or package registry involved), then resolve tokens the same way CONSUME.md describes. That's
+also how the [demo](design-system/demo/) itself works, just with `fetch()` against a local checkout
+instead of a remote URL — its `app.js` is a working reference for the whole load → merge → resolve →
+apply-as-CSS-variables pipeline if you'd rather copy code than reimplement it from the docs.
+
+## See it first
 
 ```bash
 npm run demo
 ```
 
-Starts a zero-dependency static server at `http://localhost:4173/design-system/demo/` (opens
-automatically on macOS) and serves the repo root, so the demo can fetch
-`design-system/manifests/*.json` and `design-system/tokens/*.json` directly — the same discovery
-path documented in [`tooling/CONSUME.md`](design-system/tooling/CONSUME.md). It resolves `{a.b.c}`
-token references client-side, applies them as CSS custom properties, and renders a full style guide
-(voice & tone, color, typography, spacing/radius, components, logos, template preview) per profile.
-Click any color swatch to see its token path and resolved value. Nothing in the demo is hand-copied
-from the tokens/manifests — edit a JSON file and reload to see the change.
+Opens a local, live-rendered style guide at `http://localhost:4173/design-system/demo/` (auto-opens
+on macOS). It fetches the real manifests and token files at load time and resolves `{a.b.c}` token
+references itself — nothing shown there is hand-copied, so it's always in sync with the JSON. Switch
+between the tabs to compare profiles, click any color swatch for its token path and resolved value,
+and use the light/dark toggle where one appears.
 
-Source: [`design-system/demo/`](design-system/demo/).
+This is the fastest way to answer "what does this actually look like" before touching any files.
 
-## Validate manifests
+## Two kinds of entry: profiles and patterns
 
-```bash
-node scripts/validate-manifests.mjs
-```
+|                  | **Profile** (`design-system/manifests/`)                   | **Pattern** (`design-system/patterns/`)               |
+| ---------------- | ---------------------------------------------------------- | ----------------------------------------------------- |
+| What it is       | A brand identity: voice, tone, values, plus its own tokens | A standalone UI's token set only                      |
+| Has a manifest?  | Yes — required `purpose`/`values`/`tone`/`voice`           | No                                                    |
+| Current examples | `personal`, `business-primary`, `business-venture`         | `glam-cp` (shown in the demo as "therileys-team")     |
+| Dark mode        | Optional `dark` branch in its token file                   | Whatever the source declares (`glam-cp` is dark-only) |
 
-## Local checks (lint + format + manifests)
+Use a **profile** when you're producing something that speaks in Andrew Riley's or a business
+entity's voice (a post, a proposal, a page, a signature). Use a **pattern** when you just need a
+project's visual language (colors/type/spacing) with no voice attached — don't invent voice/tone
+content to force something into the profile shape if it doesn't have any.
+
+## Using it to write or design something
+
+1. **Pick a profile.** Read [`design-system/GUIDELINES.md`](design-system/GUIDELINES.md) for the
+   short version, or open the manifest directly:
+   [`personal`](design-system/manifests/personal.json) ·
+   [`business-primary`](design-system/manifests/business-primary.json) ·
+   [`business-venture`](design-system/manifests/business-venture.json).
+2. **Match the voice.** Apply `purpose`, `values`, and `tone` to every headline and body block.
+   `voice.theyAllSoundLike` is the one rule that must hold across _all_ profiles — formality and
+   energy can shift, integrity of voice can't.
+3. **Use its tokens, not eyeballed values**, for anything visual: colors from
+   `design-system/tokens/<profile>.json`, shared type/spacing/radius scale from
+   [`design-system/tokens/shared.json`](design-system/tokens/shared.json). The demo's color swatches
+   show you the exact token path to reference.
+4. **Start from a template** for common formats:
+   [`design-system/templates/`](design-system/templates/) has an email signature, social bios, a
+   long-form article, and a deck outline — each notes which profile it suits.
+5. **Follow logo usage rules** in GUIDELINES.md — logomark vs. wordmark, clear space, no
+   recoloring outside the defined tokens.
+
+## Using it from a tool, agent, or build pipeline
+
+The discovery path is documented in full in
+[`design-system/tooling/CONSUME.md`](design-system/tooling/CONSUME.md); short version:
+
+1. Read [`design-system/manifests/index.json`](design-system/manifests/index.json) for the list of
+   profiles and the default one.
+2. Load a profile's manifest, and merge `voice.theyAllSoundLike` from `relatedProfileIds` if you're
+   generating co-branded material.
+3. Read [`design-system/tokens/index.json`](design-system/tokens/index.json) to find that profile's
+   token file (keyed by the manifest's `tokenSetId`), plus
+   [`shared.json`](design-system/tokens/shared.json).
+4. Resolve `{color.neutral.0}`-style references yourself — a token's `value` may point at another
+   token's dot-path instead of a literal. See `design-system/demo/app.js`'s `resolveOne`/
+   `flattenTokens` for a ~40-line reference implementation, or plug into Style Dictionary/Theo.
+5. For dark mode, check whether the token file has a top-level `dark` key. If so, every path under
+   it (e.g. `dark.color.brand.primary`) overrides that same path's light value — a pure lookup
+   table, not itself rendered. Not every profile has one yet (see the table above).
+
+For prompt-injecting an LLM specifically, CONSUME.md has a ready-made instruction block.
+
+## Design tokens at a glance
+
+- **Shared** (`design-system/tokens/shared.json`): neutral color scale, type scale, font families,
+  spacing, radii, motion — the same across every profile.
+- **Per-profile** (`design-system/tokens/<id>.json`): `color.brand.*` (primary/accent/surface),
+  `color.semantic.*` (text/link/onPrimary/onAccent, usually referencing brand or shared-neutral
+  tokens), and `font.heading`/`font.body` (referencing a shared family, or overriding it — `personal`
+  runs on Inter instead of the shared Source Sans 3).
+- **`onPrimary`/`onAccent`**: the text color to use _on top of_ a filled brand/accent surface. Don't
+  assume white — `personal`'s lime accent and dark-mode sky primary both need dark text instead, and
+  this token tells you which.
+- **Figma-oriented mirrors** live in [`design-system/figma/`](design-system/figma/) for Tokens
+  Studio import — see [`tooling/FIGMA.md`](design-system/tooling/FIGMA.md).
+
+## Figma & MCP
+
+- Figma: token JSON in [`design-system/figma/`](design-system/figma/), workflow in
+  [`tooling/FIGMA.md`](design-system/tooling/FIGMA.md).
+- MCP (Figma + Stitch readiness): [`tooling/MCP.md`](design-system/tooling/MCP.md), template
+  [`.cursor/mcp.json.example`](.cursor/mcp.json.example).
+- Static (non-interactive) mockups: [`design-system/mockups/index.html`](design-system/mockups/index.html) —
+  superseded by the live demo above for anything you're actively working from.
+
+## Adding to the system
+
+- **New business profile**: copy `business-venture.json` in both `manifests/` and `tokens/`, give it
+  a new `id`/`tokenSetId`, add logos under `assets/logos/<id>/`, and register the manifest path in
+  `manifests/index.json`.
+- **New pattern** (token-only, no voice): drop a token file under `design-system/tokens/`, then add
+  `{ id, name, tagline, tokensPath }` to `design-system/patterns/index.json`. The demo picks it up
+  automatically — no code changes needed unless its token shape doesn't already use `color.brand.*`/
+  `color.semantic.*`/`space.*`/`radius.*` naming (see `withPatternColorAliases` in
+  `design-system/demo/app.js` for how `glam-cp`'s different naming was mapped in).
+
+## Validate, lint, and CI
 
 ```bash
 npm ci
-npm run ci
+npm run ci              # lint + format:check + validate:manifests
+node scripts/validate-manifests.mjs   # manifests only
 ```
 
-`npm run format` applies Prettier. ESLint targets `scripts/**/*.mjs`.
+`npm run format` applies Prettier. ESLint targets `scripts/**/*.mjs`. On push and pull requests to
+`main`, GitHub Actions runs **Gitleaks** and `npm run ci` — see
+[`.github/workflows/ci.yml`](.github/workflows/ci.yml).
 
-## CI
-
-On push and pull requests to `main`, GitHub Actions runs **Gitleaks** and **npm run ci**. See [`.github/workflows/ci.yml`](.github/workflows/ci.yml).
-
-Replace placeholder names, colours, and copy in manifests and SVG wordmarks to match your real entities.
-
-## Status
-
-Progress log and open recommendations: [`design-system/STATUS.md`](design-system/STATUS.md).
+Replace placeholder names, colours, and copy in manifests and SVG wordmarks to match your real
+entities — see [`design-system/STATUS.md`](design-system/STATUS.md) for what's still outstanding.
