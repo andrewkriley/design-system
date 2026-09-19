@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Design system — live demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,400&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="app-header">
+        <div class="app-header-inner">
+          <div class="app-title">
+            <h1>Design system demo</h1>
+            <p>
+              Renders live from <code>design-system/tokens/</code> and
+              <code>design-system/manifests/</code> — nothing here is hand-copied. Switch profiles
+              to see tokens and voice change together.
+            </p>
+          </div>
+          <nav class="profile-switcher" id="profile-switcher" aria-label="Brand profile"></nav>
+        </div>
+      </header>
+
+      <main id="app-main" class="app-main">
+        <p class="loading">Loading manifests and tokens…</p>
+      </main>
+
+      <footer class="app-footer">
+        <p>
+          Source of truth lives in the JSON under <code>design-system/</code>. This page fetches and
+          resolves it at load time — edit a token or manifest file and reload to see the change
+          here.
+        </p>
+      </footer>
+    </div>
+
+    <div id="token-popover" class="token-popover" hidden></div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

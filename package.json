@@ -7,7 +7,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate:manifests": "node scripts/validate-manifests.mjs",
-    "ci": "npm run lint && npm run format:check && npm run validate:manifests"
+    "ci": "npm run lint && npm run format:check && npm run validate:manifests",
+    "demo": "node scripts/serve.mjs"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

@@ -8,9 +8,27 @@ Central **brand profiles**, **design tokens**, **logos**, **templates**, and **t
 - Machine-readable profiles: [`design-system/manifests/index.json`](design-system/manifests/index.json)
 - Tokens (colour, type, space): [`design-system/tokens/`](design-system/tokens/)
 - Tool integration: [`design-system/tooling/CONSUME.md`](design-system/tooling/CONSUME.md)
-- Visual mockups (browser): open [`design-system/mockups/index.html`](design-system/mockups/index.html)
+- Static mockups (browser): open [`design-system/mockups/index.html`](design-system/mockups/index.html)
+- **Live demo (local web app):** `npm run demo` — fetches the real manifests/tokens at runtime, resolves `{token}` references, and lets you switch between all three profiles to see color, type, voice, and components change together. See [Demo](#demo) below.
 - Figma: token JSON in [`design-system/figma/`](design-system/figma/) and [`design-system/tooling/FIGMA.md`](design-system/tooling/FIGMA.md)
 - MCP (Figma + Stitch readiness): [`design-system/tooling/MCP.md`](design-system/tooling/MCP.md), template [`.cursor/mcp.json.example`](.cursor/mcp.json.example)
+
+## Demo
+
+```bash
+npm run demo
+```
+
+Starts a zero-dependency static server at `http://localhost:4173/design-system/demo/` (opens
+automatically on macOS) and serves the repo root, so the demo can fetch
+`design-system/manifests/*.json` and `design-system/tokens/*.json` directly — the same discovery
+path documented in [`tooling/CONSUME.md`](design-system/tooling/CONSUME.md). It resolves `{a.b.c}`
+token references client-side, applies them as CSS custom properties, and renders a full style guide
+(voice & tone, color, typography, spacing/radius, components, logos, template preview) per profile.
+Click any color swatch to see its token path and resolved value. Nothing in the demo is hand-copied
+from the tokens/manifests — edit a JSON file and reload to see the change.
+
+Source: [`design-system/demo/`](design-system/demo/).
 
 ## Validate manifests
 

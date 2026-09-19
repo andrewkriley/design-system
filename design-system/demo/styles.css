@@ -1,0 +1,606 @@
+/* Layout scaffolding only. All brand color/type/space values come from CSS
+   custom properties set by app.js at runtime from the resolved token tree —
+   nothing brand-specific is hardcoded here. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background: var(--color-neutral-800, #f3f5f8);
+  color: var(--color-semantic-text, #0c0d0f);
+  font-family: var(--font-body, system-ui, sans-serif);
+  line-height: var(--font-lineHeight-normal, 1.5);
+}
+
+code {
+  font-family: var(--font-family-mono, monospace);
+  background: rgba(0, 0, 0, 0.06);
+  padding: 0.1em 0.4em;
+  border-radius: 4px;
+  font-size: 0.85em;
+}
+
+.app-shell {
+  max-width: 76rem;
+  margin: 0 auto;
+  padding: 0 1.5rem 4rem;
+}
+
+.app-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--color-neutral-800, #f3f5f8);
+  padding: 1.5rem 0 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+.app-header-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.app-title h1 {
+  margin: 0 0 0.25rem;
+  font-size: 1.5rem;
+}
+
+.app-title p {
+  margin: 0;
+  max-width: 40rem;
+  color: var(--color-neutral-300, #5c6370);
+  font-size: 0.9rem;
+}
+
+.profile-switcher {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.profile-tab {
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.profile-tab.active {
+  background: var(--color-brand-primary, #1e3a5f);
+  border-color: transparent;
+  color: var(--color-semantic-onPrimary, #fff);
+}
+
+.loading,
+.error {
+  padding: 2rem 0;
+  color: var(--color-neutral-300, #5c6370);
+}
+
+.error {
+  color: #b3261e;
+}
+
+/* Brand header */
+
+.brand-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--color-brand-surfaceAlt, #fff);
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.25rem 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-soft, none);
+}
+
+.brand-header-text {
+  flex: 1;
+}
+
+.brand-logo {
+  border-radius: var(--radius-md, 8px);
+  flex-shrink: 0;
+}
+
+.mode-toggle {
+  flex-shrink: 0;
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-button, var(--radius-full, 999px));
+  border: 1px solid var(--color-brand-primary);
+  background: transparent;
+  color: var(--color-brand-primary);
+  font-weight: 600;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.mode-toggle:hover {
+  background: var(--color-brand-primary);
+  color: var(--color-brand-surface, #fff);
+}
+
+.brand-name {
+  margin: 0;
+  font-family: var(--font-heading);
+  color: var(--color-brand-primary);
+}
+
+.brand-tagline {
+  margin: 0.15rem 0 0.35rem;
+  color: var(--color-neutral-300, #5c6370);
+}
+
+.brand-meta {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--color-neutral-300, #5c6370);
+}
+
+/* Panels */
+
+.panel {
+  background: var(--color-brand-surface, #fff);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: var(--radius-lg, 12px);
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-soft, none);
+}
+
+.panel h2 {
+  margin-top: 0;
+  font-family: var(--font-heading);
+  color: var(--color-brand-primary);
+}
+
+.panel h3 {
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-neutral-300, #5c6370);
+  margin: 1.25rem 0 0.5rem;
+}
+
+.panel-lede {
+  color: var(--color-neutral-300, #5c6370);
+  max-width: 48rem;
+}
+
+.label-muted {
+  color: var(--color-neutral-300, #5c6370);
+  font-size: 0.85rem;
+  margin-bottom: 0.25rem;
+}
+
+.panel ul {
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+.panel li {
+  margin-bottom: 0.25rem;
+}
+
+/* Voice */
+
+.voice-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: 1rem;
+}
+
+.voice-summary {
+  font-family: var(--font-heading);
+  font-size: var(--font-size-lg, 1.125rem);
+  border-left: 3px solid var(--color-brand-accent);
+  margin: 1.25rem 0 0.75rem;
+  padding-left: 1rem;
+  color: var(--color-semantic-text);
+}
+
+.family-line {
+  font-size: 0.9rem;
+  color: var(--color-neutral-300, #5c6370);
+}
+
+/* Colors */
+
+.swatch-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.swatch {
+  border: none;
+  background: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  font: inherit;
+  color: inherit;
+  padding: 0;
+}
+
+.swatch-color {
+  width: 3rem;
+  height: 3rem;
+  border-radius: var(--radius-md, 8px);
+  background: var(--swatch-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: block;
+}
+
+.swatch-row-scale .swatch-color {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 6px;
+}
+
+.swatch-label {
+  font-size: 0.7rem;
+  color: var(--color-neutral-300, #5c6370);
+}
+
+/* Typography */
+
+.type-scale {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.type-row {
+  display: grid;
+  grid-template-columns: 11rem 1fr 1fr;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.08);
+  padding-bottom: 0.5rem;
+}
+
+.type-token {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.75rem;
+  color: var(--color-neutral-300, #5c6370);
+}
+
+.type-sample {
+  color: var(--color-semantic-text);
+  white-space: nowrap;
+}
+
+.weight-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.weight-sample {
+  font-size: 1.1rem;
+}
+
+/* Spacing / radius */
+
+.scale-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.scale-row {
+  display: grid;
+  grid-template-columns: 6rem 1fr 4rem;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.scale-label {
+  font-family: var(--font-family-mono, monospace);
+  font-size: 0.75rem;
+  color: var(--color-neutral-300, #5c6370);
+}
+
+.scale-bar {
+  height: 0.85rem;
+  background: var(--color-brand-accent);
+  border-radius: 4px;
+  display: block;
+}
+
+.scale-value {
+  font-size: 0.8rem;
+  text-align: right;
+}
+
+.radius-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.radius-sample {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.radius-box {
+  width: 3rem;
+  height: 3rem;
+  background: var(--color-brand-accentSoft);
+  display: block;
+}
+
+/* Components */
+
+.component-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 1.25rem;
+}
+
+.demo-card {
+  background: var(--color-brand-surfaceAlt);
+  border-radius: var(--radius-md, 8px);
+  padding: 1.25rem;
+}
+
+.demo-card h3 {
+  margin-top: 0;
+  font-family: var(--font-heading);
+  color: var(--color-semantic-text);
+  text-transform: none;
+  letter-spacing: normal;
+  font-size: 1.1rem;
+}
+
+.demo-card p {
+  color: var(--color-semantic-textMuted, var(--color-neutral-300));
+}
+
+.demo-actions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1rem;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-weight: var(--font-weight-semibold, 600);
+  border-radius: var(--radius-button, var(--radius-md, 8px));
+  padding: 0.6rem 1.2rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: background var(--motion-duration-base, 200ms) var(--motion-easing-standard, ease);
+}
+
+.btn-primary {
+  background: var(--color-brand-primary);
+  color: var(--color-semantic-onPrimary, #fff);
+}
+
+.btn-primary:hover {
+  background: var(--color-brand-primaryMuted);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--color-brand-primaryMuted);
+  color: var(--color-brand-primaryMuted);
+}
+
+.demo-form {
+  background: var(--color-brand-surfaceAlt);
+  border-radius: var(--radius-md, 8px);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.demo-form label {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.demo-form input,
+.demo-form textarea {
+  font-family: var(--font-body);
+  border-radius: var(--radius-sm, 4px);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 0.5rem;
+  resize: vertical;
+}
+
+.demo-form .btn {
+  align-self: flex-start;
+  margin-top: 0.25rem;
+}
+
+.demo-misc {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.badge {
+  background: var(--color-brand-accent);
+  color: var(--color-semantic-onAccent, #fff);
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--radius-full, 999px);
+}
+
+.link-sample {
+  color: var(--color-semantic-link);
+}
+
+.link-sample:hover {
+  color: var(--color-semantic-linkHover);
+}
+
+.alert {
+  background: var(--color-brand-surfaceAlt);
+  border-left: 3px solid var(--color-brand-accent);
+  padding: 0.75rem 1rem;
+  border-radius: 0 var(--radius-sm, 4px) var(--radius-sm, 4px) 0;
+  font-size: 0.9rem;
+}
+
+/* Logos */
+
+.logo-row {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.logo-tile {
+  background: var(--color-brand-surface);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: var(--radius-md, 8px);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.75rem;
+  color: var(--color-neutral-300, #5c6370);
+  min-width: 10rem;
+}
+
+.logo-tile-alt {
+  background: var(--color-brand-surfaceAlt);
+}
+
+/* Templates */
+
+.template-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: 1rem;
+}
+
+.template-card {
+  border: 1px dashed rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-md, 8px);
+  padding: 1rem;
+}
+
+.template-card p {
+  margin: 0.25rem 0;
+}
+
+.template-label {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  color: var(--color-neutral-300, #5c6370) !important;
+}
+
+/* Token popover */
+
+.token-popover {
+  position: absolute;
+  z-index: 20;
+  background: #1a1c20;
+  color: #fff;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-size: 0.8rem;
+  max-width: 18rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.token-popover p {
+  margin: 0.2rem 0;
+}
+
+.token-path {
+  font-family: var(--font-family-mono, monospace);
+  color: #9ad1ff;
+}
+
+.token-value {
+  font-weight: 700;
+}
+
+.token-ref code {
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+}
+
+.app-footer {
+  color: var(--color-neutral-300, #5c6370);
+  font-size: 0.8rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 640px) {
+  .type-row {
+    grid-template-columns: 1fr;
+    gap: 0.25rem;
+  }
+}
+
+/* Dark mode — toggled by app.js only for profiles with a `dark` token branch
+   (currently just `personal`). Only the demo chrome outside the themed panels
+   needs its own rule here; panels/header already repaint via --color-brand-*
+   custom properties, which applyTheme() swaps to their dark counterparts. */
+
+body.demo-dark {
+  background: #060a14;
+}
+
+body.demo-dark .app-header {
+  background: #060a14;
+  border-bottom-color: rgba(255, 255, 255, 0.1);
+}
+
+body.demo-dark .app-title p,
+body.demo-dark .app-footer {
+  color: #98aac5;
+}
+
+body.demo-dark .profile-tab {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #f6fbff;
+}
+
+/* Higher specificity than body.demo-dark .profile-tab above, which would
+   otherwise win the cascade and overwrite this with a plain near-white — the
+   active tab's text must track its own onPrimary token instead. */
+body.demo-dark .profile-tab.active {
+  color: var(--color-semantic-onPrimary, #fff);
+}
+
+/* Logomark/wordmark SVGs have fixed-color fills baked in (they're static
+   brand assets, not token-driven) — keep their tile on a light chip in dark
+   mode instead of letting it go navy-on-navy illegible. */
+body.demo-dark .logo-tile,
+body.demo-dark .logo-tile-alt {
+  background: #f3f8ff;
+}
