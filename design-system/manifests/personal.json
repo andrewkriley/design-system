@@ -2,13 +2,13 @@
   "id": "personal",
   "type": "personal",
   "name": "Andrew Riley",
-  "tagline": "Replace with your public-facing one-liner.",
-  "purpose": "Represent Andrew Riley as an individual: credibility, character, and the through-line that connects every business entity. This profile is for speaking, writing, and media where the person—not a company—is the primary brand.",
+  "tagline": "From breadboards to boardrooms: leadership, technology and DIY builds, creative play through music, and personal health.",
+  "purpose": "Represent Andrew Riley as an individual: credibility, character, and the through-line that connects every business entity. This profile is for speaking, writing, and media where the person—not a company—is the primary brand. Lives at https://www.andrewriley.info, organised around four pillars: Health, Build, Play, Lead.",
   "values": [
-    "Clarity over cleverness",
-    "Earned trust through consistency",
-    "Respect for the reader’s time",
-    "Curiosity and intellectual honesty"
+    "Health means protecting the physical and mental foundation underneath it all.",
+    "Build means making useful things visible, repeatable, and understandable.",
+    "Play means keeping creativity, energy, and curiosity alive.",
+    "Lead means helping people, teams, and ideas move forward."
   ],
   "tone": {
     "primary": "Assured, approachable, precise",

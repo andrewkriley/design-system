@@ -15,5 +15,15 @@
       "heading": { "value": "Source Sans 3", "type": "fontFamilies" },
       "body": { "value": "Source Sans 3", "type": "fontFamilies" }
     }
+  },
+  "Business primary Dark": {
+    "color": {
+      "brand": {
+        "primary": { "value": "#2563eb", "type": "color" },
+        "primaryMuted": { "value": "#60a5fa", "type": "color" },
+        "surface": { "value": "#0c0d0f", "type": "color" },
+        "surfaceAlt": { "value": "#181a1f", "type": "color" }
+      }
+    }
   }
 }

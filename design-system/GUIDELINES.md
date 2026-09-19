@@ -28,9 +28,10 @@ Quick checks before publish:
 
 - **Shared scale:** neutrals, spacing, radii, and base type scale live in `design-system/tokens/shared.json`.
 - **Profile accents:** each profile has `design-system/tokens/<set>.json` for brand primaries and surfaces.
+- **Dark mode:** every profile's token file has a `dark` branch (overrides keyed by the same dot-path, e.g. `dark.color.brand.primary`) consumed by the [demo](demo/)'s light/dark toggle. `personal`'s dark values mirror the live site; `business-primary`/`business-venture` derive theirs from the shared neutral ramp plus a brightened primary — see `STATUS.md` for the reasoning.
 - **Fonts (web):** Source Sans 3, Source Serif 4, JetBrains Mono — load from [Google Fonts](https://fonts.google.com/) or self-host for production.
 
-Personal brand leans **serif for headings**; primary business uses **sans throughout** for a more institutional read. Ventures use sans with a distinct accent colour.
+Personal brand runs on **Inter throughout** (matching the live site at andrewriley.info, light and dark mode); primary business uses **sans throughout** for a more institutional read. Ventures use sans with a distinct accent colour.
 
 ## Logo usage
 

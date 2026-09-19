@@ -38,8 +38,8 @@ This document records what the repository already delivers and what remains to m
 
 ### High impact — replace placeholders
 
-1. **Legal and marketing names** — Update manifest `name`, `tagline`, and business wordmark SVG text; align `business-primary` and `business-venture` with real registered or trading names.
-2. **Final colour system** — Replace exploratory hex values in `design-system/tokens/*.json` and `design-system/figma/*.json`; add print specs (CMYK/Pantone) if needed.
+1. **Legal and marketing names** — Update manifest `name`, `tagline`, and business wordmark SVG text; align `business-primary` and `business-venture` with real registered or trading names. (`personal` is done — see below.)
+2. **Final colour system** — Replace exploratory hex values in `design-system/tokens/*.json` and `design-system/figma/*.json`; add print specs (CMYK/Pantone) if needed. (`personal` is done — see below; `business-primary` and `business-venture` still exploratory.)
 3. **Final logos** — Swap starter SVGs for production lockups (clear space, monochrome reversals, favicon sizes as needed).
 4. **Voice copy** — Rewrite purpose, values, tone, and `theyAllSoundLike` in your authentic voice; expand `tone.avoid` with real phrases to ban.
 
@@ -72,3 +72,25 @@ This document records what the repository already delivers and what remains to m
 4. Enable MCP in your IDE and Stitch when a server package is approved (item 12).
 
 Update this file when major milestones complete so the repo stays an accurate snapshot of status.
+
+## 2026-09-19 — Personal profile is now real
+
+`personal` tokens, manifest, and Figma export were replaced with the actual design of
+[andrewriley.info](https://github.com/andrewkriley/www-andrewriley-info): cobalt/sky/lime/growth
+palette, Inter typography, pill-shaped buttons, `2rem`/`2.5rem` card/hero radii, and a full light +
+dark mode pair (`design-system/tokens/personal.json`'s `dark` branch). `business-primary` and
+`business-venture` are still the original exploratory placeholders.
+
+## 2026-09-19 — Dark mode for all three profiles
+
+Every token file now has a `dark` branch, so all three profiles expose the demo's light/dark
+toggle, not just `personal`. `business-primary` and `business-venture` are still exploratory
+placeholders with no external source to mirror, so their dark surfaces/text reuse the existing
+shared neutral ramp (`color.neutral.0`/`50`/`500`/`900`) rather than inventing new hex values; only
+`primary`/`primaryMuted` get bespoke brightened tints (chosen to keep white button text passing
+contrast). `accent`/`accentSoft` are unchanged between modes for every profile, matching the
+convention `personal` inherited from the live site.
+
+Also added `color.semantic.onPrimary` and `onAccent` to all three profiles and wired them into the
+demo's `.btn-primary`, `.badge`, and active-profile-tab styles — fixes a real contrast bug where
+`personal`'s light lime accent and dark-mode sky primary were getting hardcoded white text.

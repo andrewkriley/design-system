@@ -16,11 +16,38 @@
       "text": { "value": "{color.neutral.0}", "type": "color" },
       "textMuted": { "value": "{color.neutral.300}", "type": "color" },
       "link": { "value": "{color.brand.primaryMuted}", "type": "color" },
-      "linkHover": { "value": "{color.brand.accent}", "type": "color" }
+      "linkHover": { "value": "{color.brand.accent}", "type": "color" },
+      "onPrimary": {
+        "value": "#ffffff",
+        "type": "color",
+        "description": "Text color for filled primary buttons/surfaces."
+      },
+      "onAccent": { "value": "#ffffff", "type": "color" }
     }
   },
   "font": {
     "heading": { "value": "{font.family.sans}", "type": "fontFamily" },
     "body": { "value": "{font.family.sans}", "type": "fontFamily" }
+  },
+  "dark": {
+    "$comment": "brand.accent/accentSoft are intentionally omitted — unchanged from light mode. Surfaces and text reuse the shared neutral ramp from its dark end rather than inventing new hex values, since this profile (unlike personal) has no external source of truth to mirror.",
+    "color": {
+      "brand": {
+        "primary": {
+          "value": "#2563eb",
+          "type": "color",
+          "description": "Brightened navy, kept saturated enough that white onPrimary text still passes contrast"
+        },
+        "primaryMuted": { "value": "#60a5fa", "type": "color" },
+        "surface": { "value": "{color.neutral.0}", "type": "color" },
+        "surfaceAlt": { "value": "{color.neutral.50}", "type": "color" }
+      },
+      "semantic": {
+        "text": { "value": "{color.neutral.900}", "type": "color" },
+        "textMuted": { "value": "{color.neutral.500}", "type": "color" },
+        "link": { "value": "{dark.color.brand.primaryMuted}", "type": "color" },
+        "linkHover": { "value": "{color.brand.accent}", "type": "color" }
+      }
+    }
   }
 }

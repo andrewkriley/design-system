@@ -1,30 +1,111 @@
 {
+  "$comment": "Sourced from the live site (github.com/andrewkriley/www-andrewriley-info, src/app/globals.css) — not exploratory placeholders. The `dark` branch mirrors that site's @media (prefers-color-scheme: dark) overrides.",
   "color": {
     "brand": {
       "primary": {
-        "value": "#1e3a5f",
+        "value": "#3a55b4",
         "type": "color",
-        "description": "Deep ink blue — authority, calm"
+        "description": "Cobalt — primary actions, key links, brand anchor"
       },
-      "primaryMuted": { "value": "#2d5a87", "type": "color" },
+      "primaryMuted": {
+        "value": "#6caddf",
+        "type": "color",
+        "description": "Sky — eyebrows, secondary highlights, section accents (site's brand-secondary)"
+      },
       "accent": {
-        "value": "#c45c26",
+        "value": "#ccff8c",
         "type": "color",
-        "description": "Warm terracotta — human warmth"
+        "description": "Lime — high-energy accents and small emphasis moments"
       },
-      "accentSoft": { "value": "#e8a882", "type": "color" },
-      "surface": { "value": "#faf8f5", "type": "color" },
-      "surfaceAlt": { "value": "#f0ebe4", "type": "color" }
+      "accentSoft": { "value": "rgb(204 255 140 / 0.16)", "type": "color" },
+      "surface": { "value": "#ffffff", "type": "color" },
+      "surfaceAlt": { "value": "#f3f8ff", "type": "color" },
+      "growth": {
+        "value": "#81de76",
+        "type": "color",
+        "description": "Growth green — making, progress, DIY, positive-state highlights"
+      },
+      "sky": {
+        "value": "#8cd9ff",
+        "type": "color",
+        "description": "Air — soft surfaces and glows; becomes the primary color in dark mode"
+      }
     },
     "semantic": {
-      "text": { "value": "{color.neutral.0}", "type": "color" },
-      "textMuted": { "value": "{color.neutral.300}", "type": "color" },
+      "text": { "value": "#24305f", "type": "color" },
+      "textMuted": { "value": "#52627f", "type": "color" },
+      "textSubtle": { "value": "#74839a", "type": "color" },
       "link": { "value": "{color.brand.primaryMuted}", "type": "color" },
-      "linkHover": { "value": "{color.brand.accent}", "type": "color" }
+      "linkHover": {
+        "value": "{color.brand.primary}",
+        "type": "color",
+        "description": "The site itself doesn't shift link color on hover; this darkens toward primary for on-brand interactive feedback."
+      },
+      "border": { "value": "#e3eef9", "type": "color" },
+      "inverse": {
+        "value": "#081126",
+        "type": "color",
+        "description": "Text used on the inverse (sky) surface — unchanged between light and dark mode"
+      },
+      "onPrimary": {
+        "value": "{color.semantic.inverse}",
+        "type": "color",
+        "description": "Filled-primary button text. The site's own primary button pairs a light surface with dark text in both modes, so this needs no separate dark override."
+      },
+      "onAccent": {
+        "value": "{color.semantic.inverse}",
+        "type": "color",
+        "description": "Text on the lime accent — white would be nearly invisible on such a light color."
+      }
     }
   },
   "font": {
-    "heading": { "value": "{font.family.serif}", "type": "fontFamily" },
+    "family": {
+      "sans": {
+        "value": "'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif",
+        "type": "fontFamily",
+        "description": "Overrides the shared Source Sans 3 default for this profile only — the live site runs on Inter throughout, no serif."
+      }
+    },
+    "heading": { "value": "{font.family.sans}", "type": "fontFamily" },
     "body": { "value": "{font.family.sans}", "type": "fontFamily" }
+  },
+  "radius": {
+    "card": { "value": "2rem", "type": "dimension" },
+    "hero": { "value": "2.5rem", "type": "dimension" },
+    "button": {
+      "value": "{radius.full}",
+      "type": "dimension",
+      "description": "Site buttons are fully pilled, not the shared radius.md rectangle."
+    }
+  },
+  "shadow": {
+    "soft": { "value": "0 24px 80px rgb(58 85 180 / 0.1)", "type": "shadow" }
+  },
+  "dark": {
+    "color": {
+      "brand": {
+        "primary": { "value": "#8cd9ff", "type": "color" },
+        "primaryMuted": { "value": "#6caddf", "type": "color" },
+        "accent": { "value": "#ccff8c", "type": "color" },
+        "accentSoft": { "value": "rgb(204 255 140 / 0.12)", "type": "color" },
+        "surface": { "value": "#081126", "type": "color" },
+        "surfaceAlt": { "value": "#1a2a52", "type": "color" },
+        "growth": { "value": "#81de76", "type": "color" },
+        "sky": { "value": "#8cd9ff", "type": "color" }
+      },
+      "semantic": {
+        "text": { "value": "#f6fbff", "type": "color" },
+        "textMuted": { "value": "#c9d8ec", "type": "color" },
+        "textSubtle": { "value": "#98aac5", "type": "color" },
+        "link": { "value": "{dark.color.brand.primaryMuted}", "type": "color" },
+        "linkHover": { "value": "{dark.color.brand.primary}", "type": "color" },
+        "border": { "value": "#293c69", "type": "color" },
+        "inverse": { "value": "#081126", "type": "color" }
+      }
+    },
+    "shadow": {
+      "soft": { "value": "0 24px 80px rgb(0 0 0 / 0.32)", "type": "shadow" }
+    }
   }
 }
