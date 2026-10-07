@@ -11,6 +11,10 @@ This README focuses on **how to use it**. For what's finished vs. still placehol
 This repo is meant to be pointed at, not published as a package — anything that can fetch a public
 GitHub URL can consume it directly: `https://github.com/andrewkriley/design-system`.
 
+For repeatable consumers, pin a semver tag or GitHub Release (for example `v0.1.0`) instead of
+`main`. `VERSION`, `package.json`, and `CHANGELOG.md` carry the current version; see
+[`RELEASE.md`](RELEASE.md) for the release checklist and the glam-cp pinning contract.
+
 **From an AI coding agent (Claude Code, Cursor, etc.):** the fastest path for a one-off styling task
 is just giving it the repo link. `therileys-team` is the primary/default entry
 (`design-system/patterns/index.json`'s `default: true`) — lead with it unless you specifically need

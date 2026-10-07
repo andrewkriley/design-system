@@ -1,5 +1,6 @@
 {
   "name": "design-system",
+  "version": "0.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -7,7 +8,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "validate:manifests": "node scripts/validate-manifests.mjs",
-    "ci": "npm run lint && npm run format:check && npm run validate:manifests",
+    "validate:version": "node scripts/validate-version.mjs",
+    "ci": "npm run lint && npm run format:check && npm run validate:manifests && npm run validate:version",
     "demo": "node scripts/serve.mjs"
   },
   "devDependencies": {

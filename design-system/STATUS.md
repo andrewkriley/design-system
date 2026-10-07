@@ -59,7 +59,7 @@ This document records what the repository already delivers and what remains to m
 
 ### Governance
 
-13. **Change control** — Decide who may edit manifests/tokens and whether version tags (semver) matter for downstream consumers.
+13. **Change control** — Delivered for downstream pinning: semver tags and GitHub Releases are the consumption contract (`VERSION`, `package.json`, `CHANGELOG.md`, `RELEASE.md`). Still decide who may edit manifests/tokens.
 14. **Co-branding rules** — Document logo lockups and colour precedence when personal and business appear together (extend `GUIDELINES.md` or manifests with `coBranding` notes if useful).
 
 ---
